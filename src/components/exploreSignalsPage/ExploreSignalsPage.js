@@ -12,10 +12,11 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import Toast from "react-native-toast-message";
 import staticData from "./StaticData";
 
 function ExploreSignalsScreen() {
-  let arr = [1, 2, 3, 4, 5, 6, 7, 8];
+  const [rerender, setRerender] = useState(0);
   const [cardData, setCardData] = useState();
 
   useEffect(() => {
@@ -24,6 +25,19 @@ function ExploreSignalsScreen() {
 
   const fetchData = () => {
     setCardData(staticData);
+  };
+
+  const passCard = async (i, name) => {
+    console.log("called");
+    let temp = await cardData;
+    await temp.splice(i, 1);
+    setCardData(temp);
+    setRerender(rerender + 1);
+    Toast.show({
+      type: "success",
+      text1: `${name} Passed! 👋`,
+      text2: `${name}thrown out of your feed 👍`,
+    });
   };
 
   const renderActivityIndicator = () => {
@@ -39,6 +53,7 @@ function ExploreSignalsScreen() {
       <View style={style.container}>
         <FlatList
           data={cardData}
+          extraData={rerender}
           decelerationRate={"fast"}
           snapToInterval={hp("70%") + hp("3%")}
           snapToAlignment={"center"}
@@ -52,7 +67,7 @@ function ExploreSignalsScreen() {
           renderItem={(data) => {
             return (
               <View style={style.card}>
-                <SignalCard data={data} />
+                <SignalCard data={data} passCard={passCard} />
               </View>
             );
           }}
@@ -69,6 +84,7 @@ function ExploreSignalsScreen() {
       <StatusBar animated={true} backgroundColor="#5667FF" hidden={false} />
       <Header />
       {cardData ? renderCards() : renderActivityIndicator()}
+      <Toast />
     </View>
   );
 }

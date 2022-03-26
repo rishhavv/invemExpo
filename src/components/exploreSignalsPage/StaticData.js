@@ -33,7 +33,7 @@ const staticData = [
     imgloc: "https://i.ibb.co/cxNQj1p/itc-limited-logo-png-transparent.png",
     lastUpdated: "54m",
     headerName: "ITC",
-    type: "conglomerate",
+    type: "Conglomerate",
     price: "252.70",
     inOrDec: "2.15",
     hasIncreased: false,

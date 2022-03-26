@@ -16,7 +16,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { MaterialIcons } from "@expo/vector-icons";
 import StategySubCard from "./StrategySubCard";
 
-const SignalCard = ({ data }) => {
+const SignalCard = ({ data, passCard }) => {
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -50,7 +50,7 @@ const SignalCard = ({ data }) => {
         <View style={[styles.flexRow, styles.mt10]}>
           <TouchableOpacity
             style={[styles.button, styles.buttonSmall]}
-            onPress={() => console.log(data?.item?.imgloc)}
+            onPress={() => passCard(data.index, data?.item?.headerName)}
           >
             <Text style={[styles.flexRow]}>👋 Pass</Text>
           </TouchableOpacity>
