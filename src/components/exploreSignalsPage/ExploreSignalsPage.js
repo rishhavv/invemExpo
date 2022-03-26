@@ -1,41 +1,46 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import {
-  Text,
   View,
   FlatList,
-  Dimensions,
   StatusBar,
   StyleSheet,
+  ActivityIndicator,
 } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Header from "../Header";
 import SignalCard from "./SignalCard";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-
-const windowHeight = Dimensions.get("window").height;
+import staticData from "./StaticData";
 
 function ExploreSignalsScreen() {
   let arr = [1, 2, 3, 4, 5, 6, 7, 8];
+  const [cardData, setCardData] = useState();
 
-  return (
-    <View>
-      <StatusBar
-        animated={true}
-        backgroundColor="#5667FF"
-        //barStyle={statusBarStyle}
-        // showHideTransition={statusBarTransition}
-        hidden={false}
-      />
-      <Header />
+  useEffect(() => {
+    setTimeout(fetchData, 2000);
+  }, []);
+
+  const fetchData = () => {
+    setCardData(staticData);
+  };
+
+  const renderActivityIndicator = () => {
+    return (
+      <View style={style.actIndicator}>
+        <ActivityIndicator size={50} color="#5667FF" />
+      </View>
+    );
+  };
+
+  const renderCards = () => {
+    return (
       <View style={style.container}>
         <FlatList
-          data={arr}
+          data={cardData}
           decelerationRate={"fast"}
-          snapToInterval={windowHeight - hp("30%") + 20}
+          snapToInterval={hp("70%") + hp("3%")}
           snapToAlignment={"center"}
           showsVerticalScrollIndicator={false}
           contentInset={{
@@ -51,21 +56,37 @@ function ExploreSignalsScreen() {
               </View>
             );
           }}
-          keyExtractor={(item) => item}
+          keyExtractor={(item) => {
+            item.headerName;
+          }}
         />
       </View>
+    );
+  };
+
+  return (
+    <View>
+      <StatusBar animated={true} backgroundColor="#5667FF" hidden={false} />
+      <Header />
+      {cardData ? renderCards() : renderActivityIndicator()}
     </View>
   );
 }
 
 const style = StyleSheet.create({
   card: {
-    paddingHorizontal: 20,
-    marginBottom: 20,
+    paddingHorizontal: wp("5%"),
+    marginBottom: hp("3%"),
   },
   container: {
     backgroundColor: "#ffffff",
     marginBottom: hp("14%"),
+  },
+  actIndicator: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    top: hp("40%"),
   },
 });
 

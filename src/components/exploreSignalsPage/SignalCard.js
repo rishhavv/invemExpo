@@ -6,6 +6,7 @@ import {
   Dimensions,
   Image,
   Button,
+  TouchableOpacity,
 } from "react-native";
 import {
   widthPercentageToDP as wp,
@@ -19,43 +20,44 @@ const SignalCard = ({ data }) => {
   return (
     <View style={styles.container}>
       <LinearGradient
-        // Background Linear Gradient
         colors={["rgb(234,246,248)", "rgb(252,233,236)"]}
         style={styles.background}
       />
       <View>
         <View style={styles.cardLogoContainer}>
-          <Image
-            source={require("../../../assets/stockLogos/hdfcbank.png")}
-            style={styles.logo}
-          />
-          <View style={styles.updateTimeContainer}>
+          <Image source={{ uri: data?.item?.imgloc }} style={styles.logo} />
+          <View style={styles.flexRow}>
             <MaterialIcons name="update" size={18} color="#BCC1C4" />
-            <Text style={styles.textLightest}>54m ago</Text>
+            <Text style={styles.textLightest}>
+              {data?.item?.lastUpdated} ago
+            </Text>
           </View>
         </View>
-        <Text style={styles.cardName}>HDFC BANK LIMITED</Text>
-        <Text style={styles.textLight}>BANKING</Text>
-        <View>
+        <Text style={styles.cardName}>{data?.item?.headerName}</Text>
+        <Text style={[styles.textLight, styles.bottomMargin2x]}>
+          {data?.item?.type}
+        </Text>
+        <View style={[styles.flexRow, styles.justifySpaceBetween, styles.mb30]}>
           <View>
-            <Text>₹ 1,436.80</Text>
-            <Text>+ 177.45 (2.45%)</Text>
+            <Text style={[styles.textMediumDark]}>₹ {data?.item?.price}</Text>
+            <Text style={[styles.textLight]}>
+              + ₹{data?.item?.inOrDec} ({data?.item?.byPercentage}%)
+            </Text>
           </View>
           <Text>Charts</Text>
         </View>
-        <StategySubCard />
-        {/* <Button
-          onPress={() => console.log("p1")}
-          title="Learn More"
-          color="#841584"
-          accessibilityLabel="Learn more about this purple button"
-        />
-        <Button
-          onPress={() => console.log("p1")}
-          title="Learn More"
-          color="#841584"
-          accessibilityLabel="Learn more about this purple button"
-        /> */}
+        <StategySubCard data={data} />
+        <View style={[styles.flexRow, styles.mt10]}>
+          <TouchableOpacity
+            style={[styles.button, styles.buttonSmall]}
+            onPress={() => console.log(data?.item?.imgloc)}
+          >
+            <Text style={[styles.flexRow]}>👋 Pass</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.button, styles.buttonBig]}>
+            <Text style={styles.textWhite}>👍 Buy</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -64,7 +66,10 @@ const SignalCard = ({ data }) => {
 const styles = StyleSheet.create({
   container: {
     height: hp("70%"),
-    padding: 15,
+    paddingLeft: wp("5%"),
+    paddingRight: wp("5%"),
+    paddingTop: hp("2%"),
+    paddingBottom: hp("2%"),
   },
   background: {
     position: "absolute",
@@ -78,32 +83,66 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 10,
+    marginBottom: wp("3%"),
   },
   logo: {
-    height: 70,
-    width: 70,
-    right: 10,
+    aspectRatio: 2 / 2,
+    width: "20%",
   },
   textLightest: {
     color: "#BCC1C4",
     alignItems: "center",
-    marginTop: 2,
-    marginLeft: 2,
+    top: 2,
+    left: 2,
     fontSize: 10,
   },
-  updateTimeContainer: {
+  flexRow: {
     display: "flex",
     flexDirection: "row",
   },
   cardName: {
     fontWeight: "bold",
     fontSize: 22,
-    marginBottom: 10,
+    marginBottom: hp("1%"),
   },
   textLight: {
-    color: "#959698",
+    color: "#747678",
     fontSize: 13,
+  },
+  bottomMargin2x: {
+    marginBottom: hp("2%"),
+  },
+  button: {
+    justifyContent: "center",
+    alignItems: "center",
+    padding: hp("1.5%"),
+    borderRadius: 8,
+  },
+  buttonSmall: {
+    width: wp("25%"),
+    backgroundColor: "#ffffff",
+    marginRight: wp("5%"),
+  },
+  buttonBig: {
+    flex: 1,
+    backgroundColor: "#000000",
+  },
+  textWhite: {
+    color: "white",
+  },
+  textMediumDark: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: hp("2%"),
+  },
+  justifySpaceBetween: {
+    justifyContent: "space-between",
+  },
+  mb30: {
+    marginBottom: hp("3%"),
+  },
+  mt10: {
+    marginTop: hp("1%"),
   },
 });
 
