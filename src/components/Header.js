@@ -4,6 +4,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { SvgUri } from "react-native-svg";
+import { Feather } from "@expo/vector-icons";
 
 const Header = () => {
   return (
@@ -13,7 +14,7 @@ const Header = () => {
         uri="https://uploads-ssl.webflow.com/620a986c2f1d53657fa1614f/6214ad039a9e804ea2f96201_Invesmint%20blue.svg"
       />
       <Text style={styles.pageName}>Signals</Text>
-      <Text>History</Text>
+      <Feather name="clock" size={24} color="black" />
     </View>
   );
 };
@@ -32,6 +33,8 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     textAlign: "center",
     marginRight: wp("10%"),
+    fontWeight: "bold",
+    fontSize: 18,
   },
 });
 
