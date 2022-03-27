@@ -21,7 +21,6 @@ This is an application built on React Native(Expo).
 ✨ Instagram like scroll effect\
 ✨ Users can pass invesment cards using passbutton\
 ✨ Responsive to android devices Screensizes\
-✨ Download Data in CSV as well as JSON format
 
 ## 💻Future improvements
 
