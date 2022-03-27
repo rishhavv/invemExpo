@@ -3,7 +3,11 @@
 This is an application built on React Native(Expo).
 (App is not yet tested on iOS devices)
 
-![Landing Page](/assets/screenshot/screenshotinvesmint.jpg | width=100)
+![Landing Page](/assets/screenshot/screenshotinvesmint.jpg)
+<img src="/assets/screenshot/screenshotinvesmint.jpg" max-width:230px;
+max-height:95px;
+width: auto;
+height: auto;>
 
 ## Tech Stack
 
