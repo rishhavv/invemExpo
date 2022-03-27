@@ -7,9 +7,9 @@ import {
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 
 const StategySubCard = ({ data }) => {
-  const renderLastRun = (x) => {
+  const renderLastRun = (x, i) => {
     return (
-      <Text style={styles.emoji}>
+      <Text style={styles.emoji} key={i}>
         {x ? <AntDesign name="checkcircleo" size={24} color="green" /> : "🚫"}
       </Text>
     );
@@ -30,7 +30,8 @@ const StategySubCard = ({ data }) => {
         <View style={[styles.flexColumn]}>
           <Text style={[styles.TextLight, styles.mb10]}>Potential returns</Text>
           <Text style={[styles.textBiggest]}>
-            {true ? "⬆️" : "⬇️"} {data?.item?.potentialReturn}x
+            <AntDesign name="upcircleo" size={24} color="green" />{" "}
+            {data?.item?.potentialReturn}x
           </Text>
         </View>
         <View>
@@ -50,8 +51,8 @@ const StategySubCard = ({ data }) => {
       <View style={[styles.flexgrow1, styles.justifySpaceBetween]}>
         <Text style={[styles.TextLight]}>Last 8 runs</Text>
         <View style={[styles.flexRow, styles.justifySpaceBetween]}>
-          {data?.item?.lastRun.map((x) => {
-            return renderLastRun(x);
+          {data?.item?.lastRun.map((x, i) => {
+            return renderLastRun(x, i);
           })}
         </View>
         <Text style={[styles.textLightest]}>
