@@ -3,7 +3,7 @@
 This is an application built on React Native(Expo).
 (App is not yet tested on iOS devices)
 
-![Landing Page](/assets/screenshot/screenshotinvesmint.jpg)
+![Landing Page](/assets/screenshot/screenshotinvesmint.jpg | width=100)
 
 ## Tech Stack
 
