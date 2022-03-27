@@ -4,13 +4,15 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import { LinearGradient } from "expo-linear-gradient";
-import { MaterialIcons } from "@expo/vector-icons";
+import { Ionicons, AntDesign } from "@expo/vector-icons";
 
 const StategySubCard = ({ data }) => {
-  let testarr = [true, true, false, false, true, true, false, true];
   const renderLastRun = (x) => {
-    return <Text style={styles.emoji}>{x ? "✅" : "🚫"}</Text>;
+    return (
+      <Text style={styles.emoji}>
+        {x ? <AntDesign name="checkcircleo" size={24} color="green" /> : "🚫"}
+      </Text>
+    );
   };
 
   return (
@@ -24,7 +26,7 @@ const StategySubCard = ({ data }) => {
           <Text style={styles.emoji}>🚀</Text>
         </View>
       </View>
-      <View style={[styles.flexRow, styles.justifySpaceBetween, styles.mb20]}>
+      <View style={[styles.flexRow, styles.justifySpaceBetween, styles.mb30]}>
         <View style={[styles.flexColumn]}>
           <Text style={[styles.TextLight, styles.mb10]}>Potential returns</Text>
           <Text style={[styles.textBiggest]}>
@@ -33,7 +35,16 @@ const StategySubCard = ({ data }) => {
         </View>
         <View>
           <Text style={[styles.TextLight, styles.mb10]}>Projected exit in</Text>
-          <Text style={[styles.textBiggest]}>{data?.item?.projectedExit}</Text>
+
+          <Text style={[styles.textBiggest, styles.justifySpaceAround]}>
+            <Ionicons
+              name="md-exit-outline"
+              size={24}
+              color="black"
+              style={styles.svg}
+            />
+            {data?.item?.projectedExit}
+          </Text>
         </View>
       </View>
       <View style={[styles.flexgrow1, styles.justifySpaceBetween]}>
@@ -102,8 +113,17 @@ const styles = StyleSheet.create({
   flexgrow1: {
     flexGrow: 1,
   },
-  mb20: {
-    marginBottom: hp("1.5%"),
+  mb30: {
+    marginBottom: hp("3%"),
+  },
+  svg: {
+    marginTop: 5,
+  },
+  justifySpaceAround: {
+    justifyContent: "space-around",
+  },
+  tickmark: {
+    aspectRatio: 1 / 1,
   },
 });
 

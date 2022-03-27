@@ -1,7 +1,7 @@
 const staticData = [
   {
     imgloc: "https://i.ibb.co/Y0qjtrX/hdfcbank.png",
-    lastUpdated: "54m",
+    lastUpdated: "4m",
     headerName: "HDFC Bank Limited",
     type: "Banking",
     price: "1,436.80",
@@ -21,7 +21,7 @@ const staticData = [
     type: "Automobile",
     price: "7,429.00",
     inOrDec: "189.70",
-    hasIncreased: true,
+    hasIncreased: false,
     byPercentage: "1.46",
     reasonForBuying: "Bull market",
     potentialReturn: "3.39",
@@ -46,7 +46,7 @@ const staticData = [
   },
   {
     imgloc: "https://i.ibb.co/QFS1Rjm/tata.png",
-    lastUpdated: "54m",
+    lastUpdated: "17m",
     headerName: "Tata Motors",
     type: "Automobile",
     price: "432.40",
@@ -57,6 +57,21 @@ const staticData = [
     potentialReturn: "2.83",
     projectedExit: "6 mo",
     lastRun: [true, true, true, true, true, true, true, true],
+    winRate: "92",
+  },
+  {
+    imgloc: "https://i.ibb.co/zQzwSyq/marico.png",
+    lastUpdated: "32m",
+    headerName: "Marico",
+    type: "Consumer Goods",
+    price: "478.30",
+    inOrDec: "52.15",
+    hasIncreased: true,
+    byPercentage: "12.34",
+    reasonForBuying: "Win along bull run",
+    potentialReturn: "2.83",
+    projectedExit: "1 ye",
+    lastRun: [true, true, false, true, true, false, true, true],
     winRate: "92",
   },
 ];

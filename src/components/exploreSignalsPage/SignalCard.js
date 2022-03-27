@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Dimensions,
-  Image,
-  Button,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -16,7 +8,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { MaterialIcons } from "@expo/vector-icons";
 import StategySubCard from "./StrategySubCard";
 
-const SignalCard = ({ data, passCard }) => {
+const SignalCard = ({ data, passCard, handleBuyButton }) => {
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -41,20 +33,24 @@ const SignalCard = ({ data, passCard }) => {
           <View>
             <Text style={[styles.textMediumDark]}>₹ {data?.item?.price}</Text>
             <Text style={[styles.textLight]}>
-              + ₹{data?.item?.inOrDec} ({data?.item?.byPercentage}%)
+              {data?.item?.hasIncreased ? "+" : "-"} ₹{data?.item?.inOrDec} (
+              {data?.item?.byPercentage}%)
             </Text>
           </View>
-          <Text>Charts</Text>
+          <Text>`</Text>
         </View>
         <StategySubCard data={data} />
-        <View style={[styles.flexRow, styles.mt10]}>
+        <View style={[styles.flexRow, styles.mt20]}>
           <TouchableOpacity
             style={[styles.button, styles.buttonSmall]}
             onPress={() => passCard(data.index, data?.item?.headerName)}
           >
             <Text style={[styles.flexRow]}>👋 Pass</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, styles.buttonBig]}>
+          <TouchableOpacity
+            style={[styles.button, styles.buttonBig]}
+            onPress={handleBuyButton}
+          >
             <Text style={styles.textWhite}>👍 Buy</Text>
           </TouchableOpacity>
         </View>
@@ -133,7 +129,7 @@ const styles = StyleSheet.create({
   textMediumDark: {
     fontSize: 20,
     fontWeight: "bold",
-    marginBottom: hp("2%"),
+    marginBottom: hp("1%"),
   },
   justifySpaceBetween: {
     justifyContent: "space-between",
@@ -141,8 +137,8 @@ const styles = StyleSheet.create({
   mb30: {
     marginBottom: hp("3%"),
   },
-  mt10: {
-    marginTop: hp("1%"),
+  mt20: {
+    marginTop: hp("2%"),
   },
 });
 

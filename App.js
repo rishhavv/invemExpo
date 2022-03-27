@@ -5,8 +5,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import ExploreSignalsScreen from "./src/components/exploreSignalsPage/ExploreSignalsPage";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
+import Discover from "./src/components/Discover";
 
-function SettingsScreen() {
+function ProfileScreen() {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>Work in progress ⚠️</Text>
@@ -38,7 +39,7 @@ export default function App() {
               <AntDesign name="search1" size={24} color={color} />
             ),
           }}
-          component={SettingsScreen}
+          component={Discover}
         />
         <Tab.Screen
           name="Me"
@@ -51,7 +52,7 @@ export default function App() {
               />
             ),
           }}
-          component={SettingsScreen}
+          component={ProfileScreen}
         />
       </Tab.Navigator>
     </NavigationContainer>
