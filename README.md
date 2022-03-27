@@ -25,10 +25,12 @@ This is an application built on React Native(Expo).
 ## 💻Future improvements
 
 🔨 Eject Expo to make app more lighter and to enable use of native APIs\
-🔨 Test with more devices(my laptop can't run emulator properly so couldn't test)\
+🔨 Test responsiveness with more devices\
 🔨 Fetch logos locally to improve fetching time\
 🔨 Make use of Lazy loading in components\
 🔨 Make single resusable stylesheet instead of different in different screen(will increase code readablity and maintainbility)
+
+**Note: . I built the app on Expo because my laptop is too slow run emulators properly**
 
 ## Available Scripts
 
